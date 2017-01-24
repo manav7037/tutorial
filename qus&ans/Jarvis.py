@@ -1,5 +1,7 @@
 import pyttsx
 import linecache
+import string 
+
 engine = pyttsx.init()
 
 rate = engine.getProperty('rate')
@@ -12,11 +14,11 @@ engine.setProperty('voice',voices[0].id)
 
 
 while True:
-      punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+      
       string1 =raw_input("").lower()
-      for char in string1:
-        if char not in punctuations:
-            string1= string1 + char 
+      for c in string.punctuation:
+            string1 = string1.replace(c,"")
+      
       if string1 in open("question.txt","r").read():
         file1 = "question.txt"
         with open(file1,"r") as text:
